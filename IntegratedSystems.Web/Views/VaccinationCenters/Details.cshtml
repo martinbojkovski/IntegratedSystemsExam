@@ -1,0 +1,65 @@
+﻿@model IntegratedSystems.Domain.Domain_Models.VaccinationCenter
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.Name</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-success" asp-action="VacinatePatient" asp-route-id="@Model.Id">Add Vacinated Patient</a>
+        </div>
+    </div>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Date Taken
+            </th>
+            <th>
+                Center
+            </th>
+            <th>
+                Certificate
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Vaccines)
+        {
+            <tr>
+                <td>
+                    @item.PatientFor.FirstName
+                </td>
+                <td>
+                    @item.PatientFor.LastName
+                </td>
+                <td>
+                    @item.DateTaken
+                </td>
+                <td>
+                    @Model.Name
+                </td>
+                <td>
+                    @item.Certificate
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
